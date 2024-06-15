@@ -9,10 +9,18 @@ def perform_search():
     results_text.insert(tk.END, f"Searching for: {query}\n\n")
     
     try:
-        num_results = int(count_entry.get())  
-        links = search(query, num_results=num_results)
-        for link in links:
-            insert_link(link)
+        num_results = int(count_entry.get())
+        links = list(search(query, num_results=num_results))
+        
+        actual_num_results = len(links)
+        if actual_num_results > 0:
+            results_text.insert(tk.END, f"Showing {min(num_results, actual_num_results)} out of {actual_num_results} results:\n\n")
+            for idx, link in enumerate(links):
+                if idx < num_results:
+                    insert_link(link)
+        else:
+            results_text.insert(tk.END, "No results found.\n")
+            
     except ValueError:
         results_text.insert(tk.END, "Please enter a valid number for the number of results.\n")
     except Exception as e:
@@ -21,8 +29,8 @@ def perform_search():
 def insert_link(link):
     display_text = f"[+] Result: {link}\n"
     results_text.insert(tk.END, display_text)
-    start_index = results_text.index(tk.END + f"- {len(display_text)}c")
-    end_index = results_text.index(tk.END + "- 1c")
+    start_index = results_text.index(tk.END + f"-{len(display_text)}c")
+    end_index = results_text.index(tk.END + "-1c")
     results_text.tag_add(link, start_index, end_index)
     results_text.tag_bind(link, "<Button-1>", lambda e, link=link: open_link(link))
     results_text.tag_config(link, foreground="blue", underline=True)
