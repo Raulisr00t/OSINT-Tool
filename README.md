@@ -27,7 +27,7 @@ cd raulisr00t-osint-tool
 Install the required Python packages.
 pip install googlesearch-python
 ```
-##Usage
+## Usage
 
 Run the application.
 python osint_tool.py
@@ -36,7 +36,8 @@ Enter your search query in the input field.
 Specify the number of search results you want to retrieve.
 Click the "Search" button to perform the search.
 Click on any of the displayed results to open the link in your default web browser.
-Code Overview
+
+## Code Overview
 The main components of the application are:
 
 perform_search: Fetches search results based on the user's query and number of results specified.
@@ -46,8 +47,8 @@ Example
 Here's an example of how the application looks:
 
 
-##Contributing
+## Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or create a pull request.
 
-##License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
